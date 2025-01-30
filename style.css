@@ -1,0 +1,250 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('images/mesa2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.cartas-jugador-container {
+    display: flex;
+    /* Define un contenedor flexbox */
+    gap: 0.5%;
+    /* Espacio entre las cartas */
+    justify-content: center;
+    /* Centra las cartas horizontalmente */
+    align-items: center;
+    /* Centra las cartas verticalmente */
+    width: 100%;
+    /* Asegura que use el ancho completo */
+    height: 200px;
+    /* Altura del contenedor */
+    position: fixed;
+    /* Fija la posición en la pantalla */
+    bottom: 10%;
+    /* Coloca el contenedor en la parte baja */
+    left: 50%;
+    /* Alinea horizontalmente al centro */
+    transform: translateX(-50%);
+    /* Ajusta el contenedor para que esté centrado */
+    perspective: 1000px;
+    /* Permite la rotación 3D */
+}
+
+.cartas-dealer-container {
+    display: flex;
+    /* Define un contenedor flexbox */
+    gap: 0.5%;
+    /* Espacio entre las cartas */
+    justify-content: center;
+    /* Centra las cartas horizontalmente */
+    align-items: center;
+    /* Centra las cartas verticalmente */
+    width: 100%;
+    /* Asegura que use el ancho completo */
+    height: 200px;
+    /* Altura del contenedor */
+    position: fixed;
+    /* Fija la posición en la pantalla */
+    top: 10%;
+    /* Coloca el contenedor en la parte baja */
+    left: 50%;
+    /* Alinea horizontalmente al centro */
+    transform: translateX(-50%);
+    /* Ajusta el contenedor para que esté centrado */
+    perspective: 1000px;
+    /* Permite la rotación 3D */
+}
+
+.carta {
+    width: 110px;
+    height: 150px;
+    position: relative;
+    transform-style: preserve-3d;
+    /* Necesario para rotación 3D */
+    transition: transform 0.8s ease-in-out;
+    /* Animación de la rotación */
+    cursor: pointer;
+}
+
+.carta.girada {
+    transform: rotateY(180deg);
+    /* Gira 180 grados */
+}
+
+.cara {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    /* Oculta la cara trasera */
+    background-size: cover;
+    background-position: center;
+}
+
+.carta-atras {
+    background-image: url('https://deckofcardsapi.com/static/img/back.png');
+}
+
+.carta-frontal {
+    background-image: none;
+    /* La imagen se cambiará dinámicamente */
+    transform: rotateY(180deg);
+    /* Inicialmente oculta */
+}
+
+@keyframes moverCarta {
+    from {
+        top: 50%;
+        right: -70px;
+        opacity: 0;
+        transform: translate(50%, -50%) scale(0.8);
+    }
+
+    to {
+        top: 85%;
+        /* Parte baja de la pantalla */
+        left: 50%;
+        /* Centro horizontal */
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.animar {
+    animation: moverCarta 1s ease-out forwards;
+}
+
+#menu-inferior {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #006400;
+    /* Verde oscuro */
+    border: 2px solid rgb(0, 72, 14);
+    /* Borde verde claro */
+    border-radius: 10px 10px 0 0;
+    /* Bordes redondeados en la parte superior */
+    padding: 0px;
+    display: flex;
+    justify-content: space-around;
+    /* Espacio uniforme entre las zonas */
+    align-items: center;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+    /* Sombra para darle un efecto flotante */
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+#menu-superior {
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 0;
+    width: 70%;
+    height: 5%;
+    background-color: #006400;
+    /* Verde oscuro */
+    border: 2px solid rgb(0, 72, 14);
+    /* Borde verde claro */
+    border-radius: 0 0 10px 10px;
+    /* Bordes redondeados en la parte superior */
+    padding: 0px;
+    display: flex;
+    justify-content: space-around;
+    /* Espacio uniforme entre las zonas */
+    align-items: center;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+    /* Sombra para darle un efecto flotante */
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.zona {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #003d05;
+    color: white;
+    border: black;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+button:hover {
+    background-color: #174800;
+}
+
+.btn_decision{
+    margin: 10px 5px;
+    text-align: center;
+}
+
+#modificar-apuesta {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#input-apuesta {
+    width: 100px;
+    text-align: center;
+    padding: 5px;
+    border: 2px solid #003d05;
+    /* Color de borde */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    outline: none;
+    /* Elimina el borde de enfoque predeterminado */
+    background-color: white;
+    /* Fondo transparente */
+    font-size: 16px;
+    /* Tamaño de fuente */
+}
+
+#input-apuesta::-webkit-outer-spin-button,
+#input-apuesta::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Elimina las flechas en Firefox */
+#input-apuesta[type=number] {
+    -moz-appearance: textfield;
+}
+
+#input-apuesta:focus {
+    border-color: #003d05;
+    /* Borde más oscuro cuando se hace foco */
+}
+
+#estado-saldo span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+@keyframes brilloContorno {
+    0% {
+        box-shadow: 0 0 10px 2px yellow;
+    }
+
+    50% {
+        box-shadow: 0 0 20px 5px yellow;
+    }
+
+    100% {
+        box-shadow: 0 0 10px 2px yellow;
+    }
+}
+
+.brillar {
+    animation: brilloContorno 1s infinite;
+}

@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('images/mesa2.jpg');
+    background-image: url('images/mesa.png');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -214,11 +214,6 @@ button:hover {
 #input-apuesta::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-}
-
-/* Elimina las flechas en Firefox */
-#input-apuesta[type=number] {
-    -moz-appearance: textfield;
 }
 
 #input-apuesta:focus {

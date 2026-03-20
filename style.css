@@ -31,6 +31,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     perspective: 1000px;
+    overflow: visible;
 }
 
 .cartas-dealer-container {
@@ -45,6 +46,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     perspective: 1000px;
+    overflow: visible;
 }
 
 .carta {
@@ -113,7 +115,7 @@ body {
     border-radius: 10px 10px 0 0;
 
     box-shadow: 0 -6px 20px rgba(0, 243, 255, 0.3),
-                inset 0 4px 15px rgba(0, 243, 255, 0.15);
+        inset 0 4px 15px rgba(0, 243, 255, 0.15);
 
     padding: 0 20px;
     display: flex;
@@ -125,7 +127,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
     text-shadow: 0 0 5px rgba(0, 243, 255, 0.8),
-                 0 0 10px rgba(0, 243, 255, 0.5);
+        0 0 10px rgba(0, 243, 255, 0.5);
 
     transition: all 0.3s ease-in-out;
 }
@@ -138,30 +140,32 @@ body {
     top: 0;
     width: 70%;
     min-height: 60px;
-    
-    background: rgba(10, 15, 20, 0.85); 
+
+    background: rgba(10, 15, 20, 0.85);
     backdrop-filter: blur(8px);
-    
+
     border: 1px solid rgba(0, 243, 255, 0.2);
     border-top: none;
     border-bottom: 2px solid #00f3ff;
     border-radius: 0 0 12px 12px;
-    
-    box-shadow: 0 6px 20px rgba(0, 243, 255, 0.3), 
-                inset 0 -4px 15px rgba(0, 243, 255, 0.15);
-    
+
+    box-shadow: 0 6px 20px rgba(0, 243, 255, 0.3),
+        inset 0 -4px 15px rgba(0, 243, 255, 0.15);
+
     padding: 0 20px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    
+
     color: #e0f8ff;
-    font-family: 'Orbitron', 'Courier New', monospace; /* Fuente futurista o monoespaciada */
+    font-family: 'Orbitron', 'Courier New', monospace;
+    /* Fuente futurista o monoespaciada */
     text-transform: uppercase;
     letter-spacing: 2px;
-    text-shadow: 0 0 5px rgba(0, 243, 255, 0.8), 
-                 0 0 10px rgba(0, 243, 255, 0.5); /* Texto brillante */
-                 
+    text-shadow: 0 0 5px rgba(0, 243, 255, 0.8),
+        0 0 10px rgba(0, 243, 255, 0.5);
+    /* Texto brillante */
+
     transition: all 0.3s ease-in-out;
 }
 
@@ -185,7 +189,7 @@ button {
     font-size: 12px;
 
     box-shadow: 0 0 6px rgba(0, 243, 255, 0.3),
-                inset 0 0 6px rgba(0, 243, 255, 0.05);
+        inset 0 0 6px rgba(0, 243, 255, 0.05);
     text-shadow: 0 0 6px rgba(0, 243, 255, 0.8);
 
     transition: all 0.3s ease;
@@ -201,12 +205,10 @@ button::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgba(0, 243, 255, 0.08) 50%,
-        transparent 100%
-    );
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(0, 243, 255, 0.08) 50%,
+            transparent 100%);
     transition: top 0.4s ease;
 }
 
@@ -223,13 +225,13 @@ button:hover {
     border-color: #00f3ff;
     color: #ffffff;
     box-shadow: 0 0 12px rgba(0, 243, 255, 0.6),
-                0 0 25px rgba(0, 243, 255, 0.3),
-                inset 0 0 10px rgba(0, 243, 255, 0.1);
+        0 0 25px rgba(0, 243, 255, 0.3),
+        inset 0 0 10px rgba(0, 243, 255, 0.1);
     text-shadow: 0 0 8px #00f3ff, 0 0 16px #00f3ff;
     transform: translateY(-1px);
 }
 
-.btn_decision{
+.btn_decision {
     margin: 10px 5px;
     text-align: center;
 }
@@ -254,7 +256,7 @@ button:hover {
     letter-spacing: 2px;
     text-shadow: 0 0 6px rgba(0, 243, 255, 0.8);
     box-shadow: 0 0 6px rgba(0, 243, 255, 0.2),
-                inset 0 0 8px rgba(0, 243, 255, 0.05);
+        inset 0 0 8px rgba(0, 243, 255, 0.05);
     backdrop-filter: blur(4px);
     transition: all 0.3s ease;
 }
@@ -276,7 +278,7 @@ button:hover {
 #input-apuesta:focus {
     border-color: #00f3ff;
     box-shadow: 0 0 12px rgba(0, 243, 255, 0.5),
-                inset 0 0 10px rgba(0, 243, 255, 0.1);
+        inset 0 0 10px rgba(0, 243, 255, 0.1);
 }
 
 #estado-saldo span {
@@ -288,9 +290,11 @@ button:hover {
     0% {
         box-shadow: 0 0 4px 1px rgba(0, 243, 255, 0.2);
     }
+
     50% {
         box-shadow: 0 0 8px 2px rgba(0, 243, 255, 0.45);
     }
+
     100% {
         box-shadow: 0 0 4px 1px rgba(0, 243, 255, 0.2);
     }
@@ -298,4 +302,35 @@ button:hover {
 
 .brillar {
     animation: brilloContorno 1s infinite;
+}
+
+/* === Entrada desde la derecha === */
+.carta-wrapper {
+    animation: cartaEntrada 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    will-change: transform, opacity;
+}
+
+@keyframes cartaEntrada {
+    from {
+        transform: translateX(280px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* === Salida hacia la izquierda === */
+.carta-wrapper.carta-saliendo {
+    animation: cartaSalida 0.35s ease-in both;
+    pointer-events: none;
+}
+
+@keyframes cartaSalida {
+    to {
+        transform: translateX(-280px);
+        opacity: 0;
+    }
 }

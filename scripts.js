@@ -281,11 +281,8 @@ async function blackjack() {
         await mostrarCartas(cartasJugador, "jugador");
         await mostrarCartas(cartasDealer, "dealerTurno1");
 
-        console.log("Carta visible de la banca:", cartasDealer[0].code);
-
         let puntuacionJugador = await calcularPuntos(cartasJugador);
         document.getElementById('puntuacionJugador').innerHTML = puntuacionJugador;
-        console.log("Tu puntuación inicial:", puntuacionJugador);
 
         // Turno del jugador
         document.getElementById('mensaje-superior').innerHTML = "Turno del jugador";
@@ -298,30 +295,24 @@ async function blackjack() {
                 cartasJugador.push(nuevaCarta[0]);
 
                 puntuacionJugador = await calcularPuntos(cartasJugador);
-                console.log("Has robado:", nuevaCarta[0].code);
-                console.log("Tu puntuación:", puntuacionJugador);
                 document.getElementById('puntuacionJugador').innerHTML = puntuacionJugador;
 
                 if (puntuacionJugador > 21) {
-                    console.log("Te pasaste de 21. ¡Pierdes!");
                     saldo -= apuesta;
                     playerTurn = false;
                 }
             } else if (action === 's') {
                 playerTurn = false;
             }
-            //Aquí lo de quitar el brillo a los botones
             document.getElementById('btn-pedir-carta').classList.remove('brillar');
             document.getElementById('btn-plantarse').classList.remove('brillar');
         }
 
         if (puntuacionJugador <= 21) {
             document.getElementById('mensaje-superior').innerHTML = "Turno de la banca";
-            console.log("Turno de la banca...");
             await mostrarCartas("nope", "dealerdestapar");
             let puntuacionDealer = await calcularPuntos(cartasDealer);
             document.getElementById('puntuacionBanca').innerHTML = puntuacionDealer;
-            console.log("Cartas iniciales de la banca:", cartasDealer.map(c => c.code), "Puntuación:", puntuacionDealer);
 
             while (puntuacionDealer < 17) {
                 const cartaNueva = await sacarCartas(mazo_id, 1);
@@ -329,26 +320,20 @@ async function blackjack() {
                 cartasDealer.push(cartaNueva[0]);
                 puntuacionDealer = await calcularPuntos(cartasDealer);
                 document.getElementById('puntuacionBanca').innerHTML = puntuacionDealer;
-                console.log("La banca ha robado:", cartaNueva[0].code);
-                console.log("Puntuación actual de la banca:", puntuacionDealer);
             }
 
             // Determinar ganador
             if (puntuacionDealer > 21) {
                 document.getElementById('mensaje-superior').innerHTML = `La banca se pasó de 21. ¡Ganas ${apuesta}!`;
-                console.log("La banca se pasó de 21. ¡Ganas!");
                 saldo += apuesta;
             } else if (puntuacionDealer > puntuacionJugador) {
                 document.getElementById('mensaje-superior').innerHTML = `La banca gana con una puntuación de ${puntuacionDealer}. ¡Pierdes ${apuesta}!`;
-                console.log("La banca gana con una puntuación de", puntuacionDealer);
                 saldo -= apuesta;
             } else if (puntuacionDealer == puntuacionJugador) {
                 document.getElementById('mensaje-superior').innerHTML = `Empate ${puntuacionDealer}. ¡Recuperas ${apuesta}!`;
-                console.log("Empatáis con una puntuación de ", puntuacionDealer, "Recuperas tu apuesta de ", apuesta);
             }
             else {
                 document.getElementById('mensaje-superior').innerHTML = `¡Ganas con una puntuación de ${puntuacionJugador} contra ${puntuacionDealer} de la banca. ¡Ganas ${apuesta}!`;
-                console.log("¡Ganas con una puntuación de", puntuacionJugador, "contra", puntuacionDealer, "de la banca!");
                 saldo += apuesta;
             }
         }
@@ -377,9 +362,7 @@ async function blackjack() {
                 decision = false;
                 terminar = true;
                 break;
-            } else {
-                console.log("Opción no válida, escribe C o P para determinar tu acción");
-            };
+            }
         }
         if (terminar == true) {
             break;

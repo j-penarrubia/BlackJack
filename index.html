@@ -10,55 +10,54 @@
 </head>
 
 <body>
+    <div id="app-container">
+        <div id="menu-superior">
+            <span id="mensaje-superior">Aquí aparecerán las instrucciones</span>
+        </div>
 
-    <div id="menu-superior">
-        <span id="mensaje-superior">Aquí aparecerán las instrucciones</span>
+        <div class="cartas-dealer-container" id="cartas-dealer-container">
+            <!--Aquú irán las cartas del dealer-->
+        </div>
+
+        <div class="cartas-jugador-container" id="cartas-jugador-container">
+            <!--Aquí irán las cartas del jugador-->
+        </div>
+
+        <div id="menu-inferior">
+            <!-- Botón para Plantarse -->
+            <div class="zona">
+                <button id="btn-plantarse">Plantarse</button>
+            </div>
+
+            <!-- Botón para Pedir Carta -->
+            <div class="zona">
+                <button id="btn-pedir-carta">Pedir Carta</button>
+            </div>
+
+            <!-- Zona para modificar la apuesta -->
+            <div style="display: flex; align-items: center; gap: 5px; justify-content: center;">
+                <!-- Botón de disminuir apuesta -->
+                <button id="btn-menos">-</button>
+                <!-- Campo de entrada para la apuesta -->
+                <input id="input-apuesta" type="number" value="0" min="0">
+                <!-- Botón de aumentar apuesta -->
+                <button id="btn-mas">+</button>
+                <button id="btn-confirmar">
+                    Confirmar Apuesta
+                </button>
+            </div>
+            <div class="zona">
+                <span>Puntuación del Jugador: <span id="puntuacionJugador">0</span></span>
+                <span>Puntuación de la Banca: <span id="puntuacionBanca">?</span></span>
+
+            </div>
+
+            <!-- Zona para mostrar saldo y apuesta en juego -->
+            <div class="zona" id="estado-saldo">
+                <span>Saldo: <span id="saldo-jugador">1000</span></span>
+                <span>Apuesta: <span id="apuesta-jugador">0</span></span>
+            </div>
+        </div>
     </div>
-
-    <div class="cartas-dealer-container" id="cartas-dealer-container">
-        <!--Aquú irán las cartas del dealer-->
-    </div>
-
-    <div class="cartas-jugador-container" id="cartas-jugador-container">
-        <!--Aquí irán las cartas del jugador-->
-    </div>
-
-    <div id="menu-inferior">
-        <!-- Botón para Plantarse -->
-        <div class="zona">
-            <button id="btn-plantarse">Plantarse</button>
-        </div>
-
-        <!-- Botón para Pedir Carta -->
-        <div class="zona">
-            <button id="btn-pedir-carta">Pedir Carta</button>
-        </div>
-
-        <!-- Zona para modificar la apuesta -->
-        <div style="display: flex; align-items: center; gap: 5px; justify-content: center;">
-            <!-- Botón de disminuir apuesta -->
-            <button id="btn-menos">-</button>
-            <!-- Campo de entrada para la apuesta -->
-            <input id="input-apuesta" type="number" value="0" min="0">
-            <!-- Botón de aumentar apuesta -->
-            <button id="btn-mas">+</button>
-            <button id="btn-confirmar">
-                Confirmar Apuesta
-            </button>
-        </div>
-        <div class="zona">
-            <span>Puntuación del Jugador: <span id="puntuacionJugador">0</span></span>
-            <span>Puntuación de la Banca: <span id="puntuacionBanca">?</span></span>
-
-        </div>
-
-        <!-- Zona para mostrar saldo y apuesta en juego -->
-        <div class="zona" id="estado-saldo">
-            <span>Saldo: <span id="saldo-jugador">1000</span></span>
-            <span>Apuesta: <span id="apuesta-jugador">0</span></span>
-        </div>
-    </div>
-
 </body>
-
 </html>

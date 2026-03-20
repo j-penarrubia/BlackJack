@@ -47,7 +47,7 @@ async function mostrarCartas(cartas, sitio) {
 
     if (sitio == "dealerTurno1") {
         let mostrar = true;
-        for (let cartaAislada of cartas) { // Usamos un for...of para iterar de manera asíncrona
+        for (let cartaAislada of cartas) { //Usamos un for... of para iterar de manera asíncrona
             let carta = document.createElement('div');
             carta.classList.add('carta');
 
@@ -94,7 +94,7 @@ async function mostrarCartas(cartas, sitio) {
 
     } else {
 
-        for (let cartaAislada of cartas) { // Usamos un for...of para iterar de manera asíncrona
+        for (let cartaAislada of cartas) {
             let carta = document.createElement('div');
             carta.classList.add('carta');
 
@@ -229,21 +229,22 @@ async function esperarBoton() {
 
 async function esperarDecision() {
     return new Promise((resolve) => {
-        let menu = document.getElementById("menu-superior");
         let mensaje = document.getElementById("mensaje-superior");
-        mensaje.innerHTML = "¿Quieres jugar una mano más o retirarte?";
+        mensaje.innerHTML = "¿Quieres jugar otra mano o retirarte?";
 
         let btn_continuar = document.createElement('button');
         btn_continuar.classList.add('btn_decision');
         btn_continuar.classList.add('brillar');
         btn_continuar.innerText = "Continuar Jugando";
+
         let btn_plantarse = document.createElement('button');
         btn_plantarse.classList.add('btn_decision');
         btn_plantarse.classList.add('brillar');
         btn_plantarse.innerText = "Plantarse";
+
         mensaje.appendChild(btn_continuar);
         mensaje.appendChild(btn_plantarse);
-        
+
         btn_continuar.addEventListener('click', () => {
             resolve('c');
         });
@@ -292,7 +293,6 @@ async function blackjack() {
         while (playerTurn) {
             const action = await esperarBoton();
             if (action === 'p') {
-
                 const nuevaCarta = await sacarCartas(mazo_id, 1);
                 await mostrarCartas(nuevaCarta, "jugador");
                 cartasJugador.push(nuevaCarta[0]);
@@ -338,11 +338,15 @@ async function blackjack() {
                 document.getElementById('mensaje-superior').innerHTML = `La banca se pasó de 21. ¡Ganas ${apuesta}!`;
                 console.log("La banca se pasó de 21. ¡Ganas!");
                 saldo += apuesta;
-            } else if (puntuacionDealer >= puntuacionJugador) {
+            } else if (puntuacionDealer > puntuacionJugador) {
                 document.getElementById('mensaje-superior').innerHTML = `La banca gana con una puntuación de ${puntuacionDealer}. ¡Pierdes ${apuesta}!`;
                 console.log("La banca gana con una puntuación de", puntuacionDealer);
                 saldo -= apuesta;
-            } else {
+            } else if (puntuacionDealer == puntuacionJugador) {
+                document.getElementById('mensaje-superior').innerHTML = `Empate ${puntuacionDealer}. ¡Recuperas ${apuesta}!`;
+                console.log("Empatáis con una puntuación de ", puntuacionDealer, "Recuperas tu apuesta de ", apuesta);
+            }
+            else {
                 document.getElementById('mensaje-superior').innerHTML = `¡Ganas con una puntuación de ${puntuacionJugador} contra ${puntuacionDealer} de la banca. ¡Ganas ${apuesta}!`;
                 console.log("¡Ganas con una puntuación de", puntuacionJugador, "contra", puntuacionDealer, "de la banca!");
                 saldo += apuesta;
@@ -367,11 +371,9 @@ async function blackjack() {
 
             if (continuar === 'c') {
                 document.getElementById('mensaje-superior').innerHTML = `Continuas jugando, tu saldo es de ${saldo}`
-                console.log("Continuas jugando, tu saldo es de ", saldo);
                 decision = false;
             } else if (continuar === 'p') {
                 document.getElementById('mensaje-superior').innerHTML = `Te retiras y te vas a casita con un saldo de ${saldo}`
-                console.log("Te retiras y te vas a casita con un saldo de ", saldo);
                 decision = false;
                 terminar = true;
                 break;
@@ -382,6 +384,9 @@ async function blackjack() {
         if (terminar == true) {
             break;
         }
+    }
+    if (saldo == 0) {
+        document.getElementById('mensaje-superior').innerHTML = "Tu saldo es 0 y no puedes seguir jugando. Recarga la página para obtener 1000 de saldo";
     }
 
 }

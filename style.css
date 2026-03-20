@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
 body {
     margin: 0;
     padding: 0;
@@ -77,7 +79,6 @@ body {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    /* Oculta la cara trasera */
     background-size: cover;
     background-position: center;
 }
@@ -119,21 +120,36 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #006400;
-    /* Verde oscuro */
-    border: 2px solid rgb(0, 72, 14);
-    /* Borde verde claro */
+    min-height: 60px;
+
+    /* Fondo HUD oscuro y translúcido */
+    background: rgba(10, 15, 20, 0.85);
+    backdrop-filter: blur(8px);
+
+    /* Bordes con neón cian en la parte superior */
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-bottom: none;
+    border-top: 2px solid #00f3ff;
     border-radius: 10px 10px 0 0;
-    /* Bordes redondeados en la parte superior */
-    padding: 0px;
+
+    /* Resplandor de neón hacia arriba */
+    box-shadow: 0 -6px 20px rgba(0, 243, 255, 0.3),
+                inset 0 4px 15px rgba(0, 243, 255, 0.15);
+
+    padding: 0 20px;
     display: flex;
     justify-content: space-around;
-    /* Espacio uniforme entre las zonas */
     align-items: center;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
-    /* Sombra para darle un efecto flotante */
-    color: white;
-    font-family: Arial, sans-serif;
+
+    /* Tipografía cyberpunk */
+    color: #e0f8ff;
+    font-family: 'Orbitron', 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px rgba(0, 243, 255, 0.8),
+                 0 0 10px rgba(0, 243, 255, 0.5);
+
+    transition: all 0.3s ease-in-out;
 }
 
 #menu-superior {
@@ -143,22 +159,36 @@ body {
     margin: auto;
     top: 0;
     width: 70%;
-    height: 5%;
-    background-color: #006400;
-    /* Verde oscuro */
-    border: 2px solid rgb(0, 72, 14);
-    /* Borde verde claro */
-    border-radius: 0 0 10px 10px;
-    /* Bordes redondeados en la parte superior */
-    padding: 0px;
+    min-height: 60px; /* Mejor que 5% para mantener consistencia responsive */
+    
+    /* Fondo estilo HUD (oscuro y cristalino) */
+    background: rgba(10, 15, 20, 0.85); 
+    backdrop-filter: blur(8px); /* Efecto de cristal translúcido */
+    
+    /* Bordes y formas */
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-top: none;
+    border-bottom: 2px solid #00f3ff;
+    border-radius: 0 0 12px 12px;
+    
+    /* Resplandor de neón (exterior e interior) */
+    box-shadow: 0 6px 20px rgba(0, 243, 255, 0.3), 
+                inset 0 -4px 15px rgba(0, 243, 255, 0.15);
+    
+    padding: 0 20px;
     display: flex;
     justify-content: space-around;
-    /* Espacio uniforme entre las zonas */
     align-items: center;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
-    /* Sombra para darle un efecto flotante */
-    color: white;
-    font-family: Arial, sans-serif;
+    
+    /* Tipografía Cyberpunk */
+    color: #e0f8ff;
+    font-family: 'Orbitron', 'Courier New', monospace; /* Fuente futurista o monoespaciada */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px rgba(0, 243, 255, 0.8), 
+                 0 0 10px rgba(0, 243, 255, 0.5); /* Texto brillante */
+                 
+    transition: all 0.3s ease-in-out;
 }
 
 .zona {
@@ -169,18 +199,60 @@ body {
 }
 
 button {
-    padding: 10px 15px;
-    background-color: #003d05;
-    color: white;
-    border: black;
+    padding: 10px 18px;
+    background-color: rgba(10, 15, 20, 0.75);
+    color: #00f3ff;
+    border: 1px solid #00f3ff;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-family: 'Orbitron', 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+
+    box-shadow: 0 0 6px rgba(0, 243, 255, 0.3),
+                inset 0 0 6px rgba(0, 243, 255, 0.05);
+    text-shadow: 0 0 6px rgba(0, 243, 255, 0.8);
+
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    position: relative;
+    overflow: hidden;
 }
 
+button::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 243, 255, 0.08) 50%,
+        transparent 100%
+    );
+    transition: top 0.4s ease;
+}
+
+button:hover::after {
+    top: 100%;
+}
+
+button:hover::after {
+    top: 100%;
+}
 
 button:hover {
-    background-color: #174800;
+    background-color: rgba(0, 243, 255, 0.12);
+    border-color: #00f3ff;
+    color: #ffffff;
+    box-shadow: 0 0 12px rgba(0, 243, 255, 0.6),
+                0 0 25px rgba(0, 243, 255, 0.3),
+                inset 0 0 10px rgba(0, 243, 255, 0.1);
+    text-shadow: 0 0 8px #00f3ff, 0 0 16px #00f3ff;
+    transform: translateY(-1px);
 }
 
 .btn_decision{
@@ -197,28 +269,40 @@ button:hover {
 #input-apuesta {
     width: 100px;
     text-align: center;
-    padding: 5px;
-    border: 2px solid #003d05;
-    /* Color de borde */
-    border-radius: 10px;
-    /* Bordes redondeados */
+    padding: 6px;
+    background-color: rgba(10, 15, 20, 0.85);
+    color: #00f3ff;
+    border: 1px solid rgba(0, 243, 255, 0.5);
+    border-radius: 4px;
     outline: none;
-    /* Elimina el borde de enfoque predeterminado */
-    background-color: white;
-    /* Fondo transparente */
-    font-size: 16px;
-    /* Tamaño de fuente */
+    font-size: 14px;
+    font-family: 'Orbitron', 'Courier New', monospace;
+    letter-spacing: 2px;
+    text-shadow: 0 0 6px rgba(0, 243, 255, 0.8);
+    box-shadow: 0 0 6px rgba(0, 243, 255, 0.2),
+                inset 0 0 8px rgba(0, 243, 255, 0.05);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
 }
 
 #input-apuesta::-webkit-outer-spin-button,
 #input-apuesta::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+    -webkit-appearance: auto;
+    opacity: 0.6;
+    cursor: pointer;
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(155deg) brightness(1.2);
+    transition: opacity 0.2s ease;
+}
+
+#input-apuesta::-webkit-outer-spin-button:hover,
+#input-apuesta::-webkit-inner-spin-button:hover {
+    opacity: 1;
 }
 
 #input-apuesta:focus {
-    border-color: #003d05;
-    /* Borde más oscuro cuando se hace foco */
+    border-color: #00f3ff;
+    box-shadow: 0 0 12px rgba(0, 243, 255, 0.5),
+                inset 0 0 10px rgba(0, 243, 255, 0.1);
 }
 
 #estado-saldo span {
@@ -228,15 +312,13 @@ button:hover {
 
 @keyframes brilloContorno {
     0% {
-        box-shadow: 0 0 10px 2px yellow;
+        box-shadow: 0 0 4px 1px rgba(0, 243, 255, 0.2);
     }
-
     50% {
-        box-shadow: 0 0 20px 5px yellow;
+        box-shadow: 0 0 8px 2px rgba(0, 243, 255, 0.45);
     }
-
     100% {
-        box-shadow: 0 0 10px 2px yellow;
+        box-shadow: 0 0 4px 1px rgba(0, 243, 255, 0.2);
     }
 }
 

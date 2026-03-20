@@ -2,7 +2,7 @@ const $ = id => document.getElementById(id);
 
 const CONTAINER = {
     jugador: 'cartas-jugador-container',
-    dealer:  'cartas-dealer-container'
+    dealer: 'cartas-dealer-container'
 };
 
 function inyectarEstilos() {
@@ -30,20 +30,20 @@ function inyectarEstilos() {
 }
 
 async function barajar(barajas) {
-    const res  = await fetch(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=${barajas}`);
+    const res = await fetch(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=${barajas}`);
     const data = await res.json();
     return data.deck_id;
 }
 
 async function sacarCartas(mazoId, cantidad) {
-    const res  = await fetch(`https://deckofcardsapi.com/api/deck/${mazoId}/draw/?count=${cantidad}`);
+    const res = await fetch(`https://deckofcardsapi.com/api/deck/${mazoId}/draw/?count=${cantidad}`);
     const data = await res.json();
     return data.cards;
 }
 
 function calcularPuntos(cartas) {
     let puntos = 0;
-    let ases   = 0;
+    let ases = 0;
 
     for (const { value } of cartas) {
         if (['JACK', 'QUEEN', 'KING'].includes(value)) {
@@ -68,20 +68,20 @@ function mostrarMensaje(html) {
 }
 
 function actualizarUI({ saldo, apuesta, puntuacionJugador, puntuacionBanca } = {}) {
-    if (saldo              !== undefined) $('saldo-jugador').innerHTML     = saldo;
-    if (apuesta            !== undefined) $('apuesta-jugador').innerHTML   = apuesta;
-    if (puntuacionJugador  !== undefined) $('puntuacionJugador').innerHTML = puntuacionJugador;
-    if (puntuacionBanca    !== undefined) $('puntuacionBanca').innerHTML   = puntuacionBanca;
+    if (saldo !== undefined) $('saldo-jugador').innerHTML = saldo;
+    if (apuesta !== undefined) $('apuesta-jugador').innerHTML = apuesta;
+    if (puntuacionJugador !== undefined) $('puntuacionJugador').innerHTML = puntuacionJugador;
+    if (puntuacionBanca !== undefined) $('puntuacionBanca').innerHTML = puntuacionBanca;
 }
 
 function crearCartaDOM(cartaData, bocaArriba = true) {
     const wrapper = document.createElement('div');
     wrapper.classList.add('carta-wrapper');
 
-    const carta   = document.createElement('div');
+    const carta = document.createElement('div');
     carta.classList.add('carta');
 
-    const detras  = document.createElement('div');
+    const detras = document.createElement('div');
     detras.classList.add('cara', 'carta-atras');
 
     const delante = document.createElement('div');
@@ -113,7 +113,7 @@ async function mostrarCartas(cartas, sitio) {
 
     for (let i = 0; i < cartas.length; i++) {
         const bocaArriba = esDealerInicial ? i === 0 : true;
-        const wrapper    = crearCartaDOM(cartas[i], bocaArriba);
+        const wrapper = crearCartaDOM(cartas[i], bocaArriba);
         container.appendChild(wrapper);
         await esperar(bocaArriba ? 1000 : 500);
     }
@@ -122,7 +122,7 @@ async function mostrarCartas(cartas, sitio) {
 async function limpiarCartas() {
     const animar = (containerId) => new Promise(resolve => {
         const container = $(containerId);
-        const wrappers  = [...container.querySelectorAll('.carta-wrapper')];
+        const wrappers = [...container.querySelectorAll('.carta-wrapper')];
         if (!wrappers.length) { resolve(); return; }
 
         wrappers.forEach((w, i) => {
@@ -139,8 +139,8 @@ async function limpiarCartas() {
 async function esperarApuesta(saldo) {
     mostrarMensaje(`Introduce tu apuesta. Saldo disponible: <strong>${saldo}</strong>`);
 
-    const btnMenos     = $('btn-menos');
-    const btnMas       = $('btn-mas');
+    const btnMenos = $('btn-menos');
+    const btnMas = $('btn-mas');
     const inputApuesta = $('input-apuesta');
     const btnConfirmar = $('btn-confirmar');
 
@@ -181,7 +181,7 @@ async function esperarApuesta(saldo) {
 async function esperarBoton() {
     return new Promise(resolve => {
         const btnPlantarse = $('btn-plantarse');
-        const btnPedir     = $('btn-pedir-carta');
+        const btnPedir = $('btn-pedir-carta');
 
         btnPlantarse.classList.add('brillar');
         btnPedir.classList.add('brillar');
@@ -196,7 +196,7 @@ async function esperarBoton() {
         };
 
         btnPlantarse.addEventListener('click', onPlantarse, { once: true });
-        btnPedir.addEventListener('click', onPedir,         { once: true });
+        btnPedir.addEventListener('click', onPedir, { once: true });
     });
 }
 
@@ -294,10 +294,10 @@ async function blackjack() {
         mostrarMensaje('Repartiendo cartas...');
 
         const cartasJugador = await sacarCartas(mazoId, 2);
-        const cartasDealer  = await sacarCartas(mazoId, 2);
+        const cartasDealer = await sacarCartas(mazoId, 2);
 
         await mostrarCartas(cartasJugador, 'jugador');
-        await mostrarCartas(cartasDealer,  'dealerTurno1');
+        await mostrarCartas(cartasDealer, 'dealerTurno1');
         actualizarUI({ puntuacionJugador: calcularPuntos(cartasJugador) });
 
         const { puntuacion: pJugador, bust } = await turnoJugador(mazoId, cartasJugador, apuesta);
@@ -320,10 +320,10 @@ async function blackjack() {
 
         const decision = await esperarDecision();
         if (decision === 'p') {
-            mostrarMensaje(`Te retiras con un saldo de ${saldo}. ¡Hasta pronto!`);
+            mostrarMensaje(`Te retiras como un cobarde con un saldo de ${saldo}. Estarás orgulloso...`);
             break;
         }
-        mostrarMensaje(`Continuamos. Saldo actual: ${saldo}`);
+        mostrarMensaje(`Sigues jugando. Saldo actual: ${saldo}`);
     }
 
     if (saldo <= 0) {
